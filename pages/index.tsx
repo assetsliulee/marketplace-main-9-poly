@@ -30,6 +30,29 @@ const COMMUNITY = process.env.NEXT_PUBLIC_COMMUNITY
 const COLLECTION_SET_ID = process.env.NEXT_PUBLIC_COLLECTION_SET_ID
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>
+const callouts = [
+  {
+    name: 'Gpt Name Service AI makes money for you',
+    description: '.gpt did for you ,AI makes money for you, good luck to you!',
+    imageSrc: 'https://i.seadn.io/gcs/files/6ddef298486f511ecfe221fbd88d0994.png?auto=format&dpr=1&w=3840',
+    imageAlt: '.gpt did for you ,AI makes money for you, good luck to you!.',
+    href: '/collections/0x69ce2cae837a7f8b01cb66db560f31e2ae3a51ae',
+  },
+  {
+    name: '.AI Domain Names on Polygon(DID)',
+    description: 'Journals and note-taking',
+    imageSrc: 'https://i.seadn.io/gcs/files/a5f0f08eccad6aa15671f25a1abd2c10.png?auto=format&dpr=1&w=3840',
+    imageAlt: '.AI Domain Names Service, Yours DID in Web3 inside AI Eco. Power of Polygon.',
+    href: '/collections/0xb9f382d0b8b7345f2f0d2f7510ee121dc75bee03',
+  },
+  {
+    name: 'Travel',
+    description: 'Trump Digital Trading Cards',
+    imageSrc: 'https://i.seadn.io/gcs/files/f980181df268011a4491137fc71afdb5.jpg?auto=format&dpr=1&w=3840',
+    imageAlt: 'The First Digital Trading Card by President Trump.',
+    href: '/collections/0x24a11e702cd90f034ea44faf1e180c0c654ac5d9',
+  },
+]
 
 const metadata = {
   title: (title: string) => <title>{title}</title>,
@@ -84,6 +107,33 @@ const Home: NextPage<Props> = ({ fallback }) => {
         {image}
       </Head>
       <header className="col-span-full mb-12 mt-[66px] px-4 md:mt-40 lg:px-0">
+         <div className="bg-gray-200">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-2xl py-16 sm:py-24 lg:max-w-none lg:py-32">
+          <h2 className="text-2xl font-bold text-gray-900">Hot Collections</h2> 
+          <div className="mt-6 space-y-12 lg:grid lg:grid-cols-3 lg:gap-x-6 lg:space-y-0">
+            {callouts.map((callout) => (
+              <div key={callout.name} className="group relative">
+                <div className="relative h-80 w-full overflow-hidden rounded-lg sm:aspect-h-1 sm:aspect-w-2 lg:aspect-h-1 lg:aspect-w-1 group-hover:opacity-75 sm:h-64">
+                  <img
+                    src={callout.imageSrc}
+                    alt={callout.imageAlt}
+                    className="h-full w-full object-cover object-center"
+                  />
+                </div>
+                <h3 className="mt-6 text-sm text-gray-500">
+                  <a href={callout.href}>
+                    <span className="absolute inset-0" />
+                    {callout.name}
+                  </a>
+                </h3>
+                <p className="text-base font-semibold text-gray-900">{callout.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
         <h1 className="reservoir-h1 text-center dark:text-white">{tagline}</h1>
       </header>
       <div className="col-span-full px-6 md:px-16">
