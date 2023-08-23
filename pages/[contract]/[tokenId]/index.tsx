@@ -110,26 +110,6 @@ const Index: NextPage<Props> = ({ collectionId, tokenDetails }) => {
     }
   )
 
-  useEffect(() => {
-    if (CHAIN_ID && (+CHAIN_ID === 1 || +CHAIN_ID === 5)) {
-      const baseUrl =
-        +CHAIN_ID === 1
-          ? 'https://api.opensea.io'
-          : 'https://testnets-api.opensea.io'
-      fetch(
-        `${baseUrl}/api/v1/asset/${collectionId}/${router.query?.tokenId?.toString()}/offers`
-      ).then(async (data) => {
-        const response = await data.json()
-        fetch(`${PROXY_API_BASE}/seaport/offers`, {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          method: 'POST',
-          body: JSON.stringify(response),
-        })
-      })
-    }
-  }, [])
 
   if (tokenData.error) {
     return <div>There was an error</div>
@@ -194,12 +174,10 @@ const Index: NextPage<Props> = ({ collectionId, tokenDetails }) => {
           token={token?.token}
           collection={collection}
           isOwner={isOwner}
-        />
-        {token.token?.kind === 'erc1155' && (
-          <Listings
+        /> 
+         <Listings
             token={`${router.query?.contract?.toString()}:${router.query?.tokenId?.toString()}`}
-          />
-        )}
+          /> 
       </div>
       <div className="col-span-full block space-y-4 px-2 md:hidden lg:px-0">
         <CollectionInfo collection={collection} token={token.token} />
